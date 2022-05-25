@@ -35,10 +35,6 @@ $updater->set_username('FYC-Labs');
 $updater->set_repository('opengrants-iframe');
 $updater->initialize();
 
-
-
-
-
 /**
  * Returns the main instance of opengrants to prevent the need to use globals.
  *

@@ -36,7 +36,6 @@ class PDUpdater {
 
     private function get_repository_info() {
         // echo $this->github_response;
-        
         if (is_null($this->github_response)) {
             $request_uri = sprintf('https://api.github.com/repos/%s/%s/releases', $this->username, $this->repository);
             // Switch to HTTP Basic Authentication for GitHub API v3
@@ -66,11 +65,6 @@ class PDUpdater {
             if (is_array($response)) {
                 $response = current($response);
             }
-
-            // if ($this->authorize_token) {
-            //     $response['zipball_url'] = add_query_arg('access_token', $this->authorize_token, $response['zipball_url']);
-            // }
-
             $this->github_response = $response;
         }
     }
