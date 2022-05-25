@@ -1,0 +1,16 @@
+#opengrants_settings form{
+    margin-top: 4rem;
+    background: white;
+    padding: 2rem;
+    border: 1px solid #EFEFEF;
+}
+#opengrants_settings form label{
+  display: block;
+  margin-top:10px;
+}
+
+.form-table tbody tr{
+  margin:1.4rem 0;
+  display: block;
+  border-bottom: 1px solid #EFEFEF;
+}
