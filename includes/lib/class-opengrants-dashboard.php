@@ -42,7 +42,7 @@ function ogIframeEmbed($atts, $content = NULL)
 			}
 			</style>';
 
-			echo '<iframe src="https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($authResponse)) . '&user_id='.$user_id.'" height="1000" width="1000" frameborder="0"></iframe>';
+			echo '<iframe src="https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($authResponse)) . '" height="1000" width="1000" frameborder="0"></iframe>';
 		} else {
 			echo '<h1 class="text-center" style="font-weight:bold">Please enter valid API Key</h1>';
 		}

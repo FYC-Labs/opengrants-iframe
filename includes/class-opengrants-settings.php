@@ -202,22 +202,6 @@ class opengrants_Settings {
 					'placeholder' => __( 'Placeholder text', 'opengrants' ),
 				),
 				array(
-					'id'          => 'api_network',
-					'label'       => __( 'OpenGrants API Network', 'opengrants' ),
-					'description' => __( 'Please enter your OpenGrants API Network Key.', 'opengrants' ),
-					'type'        => 'text',
-					'default'     => '',
-					'placeholder' => __( 'API Network Key', 'opengrants' ),
-				),
-				array(
-					'id'          => 'api_network_password',
-					'label'       => __( 'OpenGrants API Network Password', 'opengrants' ),
-					'description' => __( 'Please enter your OpenGrants API Network Password.', 'opengrants' ),
-					'type'        => 'text',
-					'default'     => '',
-					'placeholder' => __( 'API Network Key Password', 'opengrants' ),
-				),
-				array(
 					'id'          => 'primary_accent_color',
 					'label'       => __( 'Pick your primary accent color', 'opengrants' ),
 					'description' => __( 'Please enter your primary accent color.', 'opengrants' ),
