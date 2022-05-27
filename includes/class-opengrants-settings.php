@@ -191,7 +191,7 @@ class opengrants_Settings {
 
 		$settings['standard'] = array(
 			'title'       => __( 'OpenGrants Iframe Settings', 'opengrants' ),
-			'description' => __( 'Please enter your information below in the fields, if you do not have an proper API Key the iframe will not display', 'opengrants' ),
+			'description' => __( 'Please enter your information below in the fields, if you do not have an proper API Key the iframe will not display. To display the iframe on Wordpress pages, use this short code [opengrants_iframe] in the WYSIWYG Editor.', 'opengrants' ),
 			'fields'      => array(
 				array(
 					'id'          => 'api_key',
