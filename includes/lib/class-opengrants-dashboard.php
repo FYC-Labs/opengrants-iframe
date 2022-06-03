@@ -25,6 +25,10 @@ function ogIframeEmbed($atts, $content = NULL)
 					$authResponse = authenticate($key, $userEmail);
 				}
 			}
+			$userObj = array(
+				'id' => $authResponse->id, 
+				'token' => $authResponse->token
+			);
 
 			$primaryColor = get_option('wpt_primary_accent_color');
 			$primaryColorWithoutHex = explode("#", $primaryColor);
@@ -42,7 +46,7 @@ function ogIframeEmbed($atts, $content = NULL)
 			}
 			</style>';
 
-			echo '<iframe src="https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($authResponse)) . '" height="1000" width="1000" frameborder="0"></iframe>';
+			echo '<iframe src="https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($userObj)) . '" height="1000" width="1000" frameborder="0"></iframe>';
 		} else {
 			echo '<h1 class="text-center" style="font-weight:bold">Please enter valid API Key</h1>';
 		}
