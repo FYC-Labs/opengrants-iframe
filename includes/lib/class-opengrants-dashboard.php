@@ -25,7 +25,7 @@ function ogIframeEmbed($atts, $content = NULL)
 					echo '<script>
 					const hasSeen = localStorage.getItem("hasSeenLoginPrompt");
 					if (!hasSeen) {
-						alert("Looks like you signed up with Open Grants directly. Please login with your username and password")
+						alert("Oops! Looks like you already have an OpenGrants account with this email. Try again with a different email, or click here to access the main OpenGrants platform with your existing login.")
 						localStorage.setItem("hasSeenLoginPrompt", true);
 					}
 					</script>';
