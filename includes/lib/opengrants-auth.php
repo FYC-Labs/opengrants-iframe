@@ -3,7 +3,8 @@ function getPluginFields($key, $userName, $firstName = '', $lastName = '')
 {
   $decodedKey = base64_decode($key);
   $decodedKeyParts = explode(':', $decodedKey);
-  return '{"username":"' . $userName . '","API_Network":"' . $decodedKeyParts[0] . '","password":"' . $decodedKeyParts[1] . '","Name":"' . $firstName . ' ' . $lastName . '"}';
+
+  return '{"username":"' . $userName . '","email":"' . $userName . '","api_network":"' . $decodedKeyParts[0] . '","password":"' . $decodedKeyParts[1] . '","name":"' . $firstName . '","surname":"' . $lastName . '"}';
 }
 function authenticate($key, $userName)
 {
@@ -50,7 +51,7 @@ function register($key, $userName, $firstName, $lastName)
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://refactortest.opengrants.io/api/authenticate/register_portal_user',
+    CURLOPT_URL => 'https://refactortest.opengrants.io/api/register/register_portal_user',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -77,5 +78,6 @@ function register($key, $userName, $firstName, $lastName)
   ));
 
   $response = curl_exec($curl);
+
   return json_decode($response);
 }
