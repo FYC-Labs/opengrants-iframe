@@ -13,14 +13,22 @@ function ogIframeEmbed($atts, $content = NULL)
 		$userFirstName = $userInfo['first_name'][0];
 		$userLastName = $userInfo['last_name'][0];
 		$userEmail = $current_user->user_email;
+		$iframeSrc = 'https://sandbox.opengrants.io/';
+		$loginFail = false;
 		$key = get_option('wpt_api_key');
 		if ($key) {
 			$authResponse = authenticate($key, $userEmail);
 			if (!$authResponse->token) {
 				$registerResponse = register($key, $userEmail, $userFirstName, $userLastName);
 				if (!$registerResponse->token) {
-					echo 'Looks like you may already be a user, please login below.';
-					// return;
+					$loginFail = true;
+					echo '<script>
+					const hasSeen = localStorage.getItem("hasSeenLoginPrompt");
+					if (!hasSeen) {
+						alert("Looks like you signed up with Open Grants directly. Please login with your username and password")
+						localStorage.setItem("hasSeenLoginPrompt", true);
+					}
+					</script>';
 				} else {
 					$authResponse = authenticate($key, $userEmail);
 				}
@@ -45,8 +53,10 @@ function ogIframeEmbed($atts, $content = NULL)
 				overflow-x: hidden;
 			}
 			</style>';
-
-			echo '<iframe src="https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($userObj)) . '" height="1000" width="1000" frameborder="0"></iframe>';
+			if(!$loginFail){
+				$iframeSrc = 'https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($userObj)) . '';
+			}
+			echo '<iframe src="' . $iframeSrc . '" height="1000" width="1000" frameborder="0"></iframe>';
 		} else {
 			echo '<h1 class="text-center" style="font-weight:bold">Please enter valid API Key</h1>';
 		}
