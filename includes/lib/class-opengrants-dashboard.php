@@ -19,8 +19,8 @@ function ogIframeEmbed($atts, $content = NULL)
 			if (!$authResponse->token) {
 				$registerResponse = register($key, $userEmail, $userFirstName, $userLastName);
 				if (!$registerResponse->token) {
-					echo 'INVALID API KEY OR USER';
-					return;
+					echo 'Looks like you may already be a user, please login below.';
+					// return;
 				} else {
 					$authResponse = authenticate($key, $userEmail);
 				}
