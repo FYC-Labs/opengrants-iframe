@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Opengrants
- * Version: 2.0.1
+ * Version: 2.0.2
  * Description: This plugin enables a custom iframe to view OpenGrants Portal
  * Author: FYCLabs
  * Requires at least: 4.0

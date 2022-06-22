@@ -13,7 +13,7 @@ function ogIframeEmbed($atts, $content = NULL)
 		$userFirstName = $userInfo['first_name'][0];
 		$userLastName = $userInfo['last_name'][0];
 		$userEmail = $current_user->user_email;
-		$iframeSrc = 'https://sandbox.opengrants.io/';
+		$iframeSrc = 'https://portal.opengrants.io/';
 		$loginFail = false;
 		$key = get_option('wpt_api_key');
 		if ($key) {
@@ -54,7 +54,7 @@ function ogIframeEmbed($atts, $content = NULL)
 			}
 			</style>';
 			if(!$loginFail){
-				$iframeSrc = 'https://sandbox.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($userObj)) . '';
+				$iframeSrc = 'https://portal.opengrants.io/embedded_auth?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&user=' . urlencode(json_encode($userObj)) . '';
 			}
 			echo '<iframe src="' . $iframeSrc . '" height="1000" width="1000" frameborder="0"></iframe>';
 		} else {

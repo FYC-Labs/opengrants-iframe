@@ -1,10 +1,10 @@
 <?php
 function getPluginFields($key, $userName, $firstName = '', $lastName = '')
 {
-  $decodedKey = base64_decode($key);
-  $decodedKeyParts = explode(':', $decodedKey);
-
-  return '{"username":"' . $userName . '","email":"' . $userName . '","api_network":"' . $decodedKeyParts[0] . '","password":"' . $decodedKeyParts[1] . '","name":"' . $firstName . '","surname":"' . $lastName . '"}';
+  // $decodedKey = base64_decode($key);
+  // $decodedKeyParts = explode(':', $decodedKey);
+  return '{"username":"' . $userName . '","email":"' . $userName . '","api_network":"' . $key . '", "name":"' . $firstName . '","surname":"' . $lastName . '"}';
+  // return '{"username":"' . $userName . '","email":"' . $userName . '","api_network":"' . $decodedKeyParts[0] . '","password":"' . $decodedKeyParts[1] . '","name":"' . $firstName . '","surname":"' . $lastName . '"}';
 }
 function authenticate($key, $userName)
 {
@@ -13,7 +13,7 @@ function authenticate($key, $userName)
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://refactortest.opengrants.io/api/authenticate/authenticate_portal_user',
+    CURLOPT_URL => 'https://refactor.opengrants.io/api/authenticate/authenticate_portal_user',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -23,7 +23,7 @@ function authenticate($key, $userName)
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS => $fields,
     CURLOPT_HTTPHEADER => array(
-      'authority: refactortest.opengrants.io',
+      'authority: refactor.opengrants.io',
       'accept: */*',
       'accept-language: en-US,en;q=0.9,es;q=0.8',
       'content-type: application/json',
@@ -51,7 +51,7 @@ function register($key, $userName, $firstName, $lastName)
   $curl = curl_init();
 
   curl_setopt_array($curl, array(
-    CURLOPT_URL => 'https://refactortest.opengrants.io/api/register/register_portal_user',
+    CURLOPT_URL => 'https://refactor.opengrants.io/api/register/register_portal_user',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_ENCODING => '',
     CURLOPT_MAXREDIRS => 10,
@@ -61,7 +61,7 @@ function register($key, $userName, $firstName, $lastName)
     CURLOPT_CUSTOMREQUEST => 'POST',
     CURLOPT_POSTFIELDS => $fields,
     CURLOPT_HTTPHEADER => array(
-      'authority: refactortest.opengrants.io',
+      'authority: refactor.opengrants.io',
       'accept: */*',
       'accept-language: en-US,en;q=0.9,es;q=0.8',
       'content-type: application/json',
