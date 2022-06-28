@@ -68,10 +68,20 @@ function ogIframeEmbed($atts, $content = NULL){
 		}
 	} else { ?>
 		<?php if($public == true){
+			echo '
+			<style>
+				iframe {
+					display: block;
+					width: 100%;
+					border: none;
+					overflow-y: auto;
+					overflow-x: hidden;
+				}
+			</style>';
 			$iframeSrc = 'https://portal.opengrants.io/login?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&public=true' . '&user=' . urlencode(json_encode($userObj)) . '';
 			echo '<iframe src="' . $iframeSrc . '" height="1000" width="1000" frameborder="0"></iframe>';
 		}else{ ?>
-			<script>window.location.href = "<?= $siteUrl; ?>"; </script>
+			<script>window.location.href = "<?= $home_url; ?>"; </script>
 		<?php }?>
 	<?php }
 }
