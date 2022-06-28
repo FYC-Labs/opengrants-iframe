@@ -223,6 +223,14 @@ class opengrants_Settings {
 					'default'     => '',
 					'placeholder' => '',
 				),
+				array(
+					'id'          => 'iframe_public_option',
+					'label'       => __( 'Public', 'opengrants' ),
+					'description' => __( 'If you need to display the OpenGrants iFrame on a public site please check the box.', 'opengrants' ),
+					'type'        => 'checkbox',
+					'default'     => '',
+					'placeholder' => '',
+				),
 			),
 		);
 

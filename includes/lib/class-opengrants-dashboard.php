@@ -3,9 +3,22 @@
 if (!defined('WPINC')) {
 	die;
 } // end if
-function ogIframeEmbed($atts, $content = NULL)
-{
+function ogIframeEmbed($atts, $content = NULL){
 	require_once(plugin_dir_path(__DIR__) . 'lib/opengrants-auth.php');
+	$iframeSrc = 'https://portal.opengrants.io/';
+	$primaryColor = get_option('wpt_primary_accent_color');
+	$primaryColorWithoutHex = explode("#", $primaryColor);
+	$secondaryColor = get_option('wpt_secondary_accent_color');
+	$secondaryColorWithoutHex = explode("#", $secondaryColor);
+	$logoUrl = wp_get_attachment_image_url(get_option('wpt_iframe_logo'), 'full');
+	$home_url = get_site_url();
+	$public_check = get_option('wpt_iframe_public_option');
+	$public = false;
+	if($public_check == 'on'){
+		$public = true;
+	}else{
+		$public = false;
+	}
 	if (is_user_logged_in()) {
 		$current_user = wp_get_current_user();
 		$user_id = $current_user->ID;
@@ -13,7 +26,6 @@ function ogIframeEmbed($atts, $content = NULL)
 		$userFirstName = $userInfo['first_name'][0];
 		$userLastName = $userInfo['last_name'][0];
 		$userEmail = $current_user->user_email;
-		$iframeSrc = 'https://portal.opengrants.io/';
 		$loginFail = false;
 		$key = get_option('wpt_api_key');
 		if ($key) {
@@ -34,15 +46,9 @@ function ogIframeEmbed($atts, $content = NULL)
 				}
 			}
 			$userObj = array(
-				'id' => $authResponse->id, 
+				'id' => $authResponse->id,
 				'token' => $authResponse->token
 			);
-
-			$primaryColor = get_option('wpt_primary_accent_color');
-			$primaryColorWithoutHex = explode("#", $primaryColor);
-			$secondaryColor = get_option('wpt_secondary_accent_color');
-			$secondaryColorWithoutHex = explode("#", $secondaryColor);
-			$logoUrl = wp_get_attachment_image_url(get_option('wpt_iframe_logo'), 'full');
 			echo '
 			<style>
 			iframe {
@@ -60,16 +66,19 @@ function ogIframeEmbed($atts, $content = NULL)
 		} else {
 			echo '<h1 class="text-center" style="font-weight:bold">Please enter valid API Key</h1>';
 		}
-	} else {
-		$siteUrl = get_site_url();
+	} else { ?>
+		<?php if($public == true){
+			$iframeSrc = 'https://portal.opengrants.io/login?logo=' . $logoUrl . '&primary=' . $primaryColorWithoutHex[1] . '&secondary=' . $secondaryColorWithoutHex[1] . '&public=true' . '&user=' . urlencode(json_encode($userObj)) . '';
+			echo '<iframe src="' . $iframeSrc . '" height="1000" width="1000" frameborder="0"></iframe>';
+		}else{ ?>
+			<script>window.location.href = "<?= $siteUrl; ?>"; </script>
+		<?php }?>
+	<?php }
+}
 		// server side redirects are not working, using client side redirect.
 ?>
-<script>
-window.location.href = "<?= $siteUrl; ?>";
-</script>
+
 <?php
-	}
-}
 
 // Register All Shorcodes At Once
 function register_shortcode()
