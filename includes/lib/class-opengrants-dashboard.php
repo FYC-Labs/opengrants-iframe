@@ -85,11 +85,9 @@ function ogIframeEmbed($atts, $content = NULL){
 		<?php }?>
 	<?php }
 }
-		// server side redirects are not working, using client side redirect.
+// server side redirects are not working, using client side redirect.
 ?>
-
 <?php
-
 // Register All Shorcodes At Once
 function register_shortcode()
 {
